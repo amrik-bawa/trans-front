@@ -1,10 +1,21 @@
 import Logo from "../../assets/images/logo.png";
 import Avtar from "../../assets/images/avtar.svg";
+import { useSelector, useDispatch } from 'react-redux'
+import { decrement, increment } from '../../features/counter/counterSlice'
 const Header =()=>{
+
+    const count = useSelector((state) => state.counter.value)
+    const dispatch = useDispatch()
+
+// const test =()=>dispatch(increment)
+
     return <>
         <header className="nav-bar">
                     <div className="container-fluid">
                         <div className="d-md-flex justify-content-between py-3">
+                        <button aria-label="Decrement value" onClick={() => dispatch(decrement())}> - </button>
+                            <h1>Conter is {count}</h1>
+                            <button aria-label="Increment value" onClick={() => dispatch(increment())}> - </button>
                             <div>
                                 <a href="#"><img src={Logo} /></a>
                             </div>

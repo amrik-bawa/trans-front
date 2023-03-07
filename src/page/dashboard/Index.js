@@ -17,8 +17,34 @@ import Msg from "../../assets/images/msg.svg";
 import "./dashboard.css";
 import TopNavs from './TopNavs'
 import RecentSignUp from "./RecentSignUp";
-
+import axios from 'axios';  
+import { useState,useEffect  } from "react";
 const Dashboard =()=>{
+    const [isLoading,setIsLoading]=useState(false);
+    const [newSignUpsList,setnewSignUpsList]=useState([]);
+    const RecentSU=[];
+
+
+    useEffect(() => {
+
+
+        setTimeout(() => {
+            axios.get(`https://jsonplaceholder.typicode.com/todos/1`)  
+    .then(res => {  
+    setIsLoading(true)
+    setnewSignUpsList([res.data]);
+    })
+          }, 3000);
+
+
+		
+	});
+
+
+
+newSignUpsList.map((item) => {
+    console.log('single item ' , item , item.title)
+})
     return <>
     <div className="main-wrapper">
         <Header/>
@@ -425,10 +451,12 @@ const Dashboard =()=>{
                                                                 <th className="text-gray fw-semibold fs-12">User</th>
                                                                 <th className="text-gray fw-semibold fs-12">About</th>
                                                                 <th className="text-gray fw-semibold fs-12">Date</th>
-                                                                <th className="text-gray fw-semibold fs-12">Action</th>
+                                                                <th className="text-gray fw-semibold fs-12">Action11</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                           
+                                                           { newSignUpsList.map((item) => { return (<>
                                                             <tr>
                                                                 <td>
                                                                     <div className="d-flex">
@@ -436,8 +464,8 @@ const Dashboard =()=>{
                                                                             <img src={TabAvtar} />
                                                                         </div>
                                                                         <div className="ps-2">
-                                                                            <h6 className="fs-14 mb-0">Coby Foster</h6>
-                                                                            <p className="fs-12 text-gray mb-0">coby@cfdigital.co.uk</p>
+                                                                            <h6 className="fs-14 mb-0">{item.title}</h6>
+                                                                            <p className="fs-12 text-gray mb-0">coby11111@cfdigital.co.uk</p>
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -451,30 +479,8 @@ const Dashboard =()=>{
                                                                 <td>
                                                                     <img src={DotsVertical} />
                                                                 </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <div className="d-flex">
-                                                                        <div>
-                                                                            <img src={TabAvtar} />
-                                                                        </div>
-                                                                        <div className="ps-2">
-                                                                            <h6 className="fs-14 mb-0">Phoenix Baker</h6>
-                                                                            <p className="fs-12 text-gray mb-0">coby@cfdigital.co.uk</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                    <div>
-                                                                        <h3 className="fs-14 mb-0">Content curating app</h3>
-                                                                        <h6 className="fs-14 text-gray mb-0">Brings all your news into one place</h6>
-                                                                    </div>
-                                                                </td>
-                                                                <td>Jan 6, 2023</td>
-                                                                <td>
-                                                                    <img src={DotsVertical} />
-                                                                </td>
-                                                            </tr>
+                                                            </tr></>)
+                                                            })}
                                                             <tr>
                                                                 <td>
                                                                     <div className="d-flex">
@@ -483,7 +489,7 @@ const Dashboard =()=>{
                                                                         </div>
                                                                         <div className="ps-2">
                                                                             <h6 className="fs-14 mb-0">Lana Steiner</h6>
-                                                                            <p className="fs-12 text-gray mb-0">coby@cfdigital.co.uk</p>
+                                                                            <p className="fs-12 text-gray mb-0">testttttcoby@cfdigital.co.uk</p>
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -665,5 +671,6 @@ const Dashboard =()=>{
     </div>
         
     </>
+
 }
 export default Dashboard;
