@@ -1,45 +1,45 @@
 import { createSlice } from '@reduxjs/toolkit'
-import enquiriesService from '../../services/enquiries';
+import signUpsService from '../../services/signUps';
 import { loadingStatus } from "../global/globalSlice";
-export const getEnquiriesList = () => async (dispatch) => {
+export const getSignUpsList = () => async (dispatch) => {
 	// dispatch(loadingStatus(true));
-    // console.log(enquiriesService.getList())
-	return enquiriesService
+    // console.log(signUpsService.getList())
+	return signUpsService
 		.getList()
 		.then( (res) => {
             console.log('resoponse ',res)
-			dispatch(enquiriesListSuccess(res?.data));
+			dispatch(signUpsListSuccess(res?.data));
             console.log(res?.data)
 			return dispatch(loadingStatus(false));
 		})
 		.catch((error) => {
             console.log(error.message)
 			dispatch(loadingStatus(false));
-			return dispatch(enquiriesListError(error.message));
+			return dispatch(signUpsListError(error.message));
 		});
 };
 
 
 
 const initialState = {
-    enquiriesList: [],
+    signUpsList: [],
 }
 
-export const enquiriesSlice = createSlice({
-  name: 'enquiries',
+export const signUpsSlice = createSlice({
+  name: 'signUps',
   initialState,
   reducers: {
-    enquiriesListSuccess: (state, action) => {
+    signUpsListSuccess: (state, action) => {
         state.success = true;
-        state.enquiriesList = action.payload;
+        state.signUpsList = action.payload;
     },
-    enquiriesListError: (state, action) => {
+    signUpsListError: (state, action) => {
         state.success = false;
-        state.enquiriesList = null;
+        state.signUpsList = null;
     },
     changeName: (state, action) => {
         state.success = true;
-        state.enquiriesList = action.payload;
+        state.signUpsList = action.payload;
     },
     // increment: (state) => {
     //   // Redux Toolkit allows us to write "mutating" logic in reducers. It
@@ -58,6 +58,6 @@ export const enquiriesSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { enquiriesListSuccess,enquiriesListError,changeName } = enquiriesSlice.actions
+export const { signUpsListSuccess,signUpsListError,changeName } = signUpsSlice.actions
 
-export default enquiriesSlice.reducer
+export default signUpsSlice.reducer

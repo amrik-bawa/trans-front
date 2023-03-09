@@ -28,10 +28,8 @@ const Dashboard =()=>{
 
     useEffect(() => {
         dispatch(getEnquiriesList())
-        console.log("enquiriesList ===>>>" , enquiriesList)
     }, [dispatch])
 
-    console.log("enquriesListenquriesList" , enquiriesList)
     return <>
     <div className="main-wrapper">
         <Header/>

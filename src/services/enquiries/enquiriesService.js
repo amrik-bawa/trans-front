@@ -5,7 +5,7 @@ import { getRequest } from '../axios';
 class enquiriesService {
 
     getList = async (payload) =>{
-       return await getRequest('userks');
+       return await getRequest('users');
         }
 
 }

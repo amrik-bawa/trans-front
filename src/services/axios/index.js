@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const axiosClient = axios.create();
 
-axiosClient.defaults.baseURL = 'https://jsonplaceholder.typicode.com/';
+axiosClient.defaults.baseURL = 'https://transbunnies.com/dev/wp-json/';
 
 axiosClient.defaults.headers = {
   'Content-Type': 'application/json',
@@ -10,7 +10,7 @@ axiosClient.defaults.headers = {
 };
 
 //All request will wait 2 seconds before timeout
-axiosClient.defaults.timeout = 2000;
+axiosClient.defaults.timeout = 10000;
 
 axiosClient.defaults.withCredentials = true;
 

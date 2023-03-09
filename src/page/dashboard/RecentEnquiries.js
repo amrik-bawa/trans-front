@@ -44,7 +44,7 @@ const RecentEnquries=()=>{
                                                         </thead>
                                                         <tbody>
                                                            
-                                                           {/* { newSignUpsList.map((item) => { return (<>
+                                                           { newSignUpsList.map((item) => { return (<>
                                                             <tr>
                                                                 <td>
                                                                     <div className="d-flex">
@@ -68,7 +68,7 @@ const RecentEnquries=()=>{
                                                                     <img src={DotsVertical} />
                                                                 </td>
                                                             </tr></>)
-                                                            })} */}
+                                                            })}
                                                             <tr>
                                                                 <td>
                                                                     <div className="d-flex">
