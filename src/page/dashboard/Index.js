@@ -19,32 +19,19 @@ import TopNavs from './TopNavs'
 import RecentSignUp from "./RecentSignUp";
 import axios from 'axios';  
 import { useState,useEffect  } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { getEnquiriesList } from "../../store/enquiries/enquiriesSlice";
 const Dashboard =()=>{
-    const [isLoading,setIsLoading]=useState(false);
-    const [newSignUpsList,setnewSignUpsList]=useState([]);
-    const RecentSU=[];
 
+    const dispatch = useDispatch()
+    const { enquiriesList } = useSelector((state) => state.enquiries)
 
     useEffect(() => {
+        dispatch(getEnquiriesList())
+        console.log("enquiriesList ===>>>" , enquiriesList)
+    }, [dispatch])
 
-
-        setTimeout(() => {
-            axios.get(`https://jsonplaceholder.typicode.com/todos/1`)  
-    .then(res => {  
-    setIsLoading(true)
-    setnewSignUpsList([res.data]);
-    })
-          }, 3000);
-
-
-		
-	});
-
-
-
-newSignUpsList.map((item) => {
-    console.log('single item ' , item , item.title)
-})
+    console.log("enquriesListenquriesList" , enquiriesList)
     return <>
     <div className="main-wrapper">
         <Header/>
@@ -429,7 +416,7 @@ newSignUpsList.map((item) => {
                                         </Col>
                                         <Col>
                                             <div className="recent-signup">
-                                                <div className="mt-3 border-lightgray  py-2 px-2 ">
+                                                <div className="mt-3 border-lightgray  py-2 px-2 " style={{border:'2px solid red'}}>
                                                     <div className="d-lg-flex justify-content-between">
                                                         <div className="d-flex align-items-center">
                                                             <h3 className="fw-bold fs-18 mb-0">Recent Enquiries</h3>
@@ -456,7 +443,7 @@ newSignUpsList.map((item) => {
                                                         </thead>
                                                         <tbody>
                                                            
-                                                           { newSignUpsList.map((item) => { return (<>
+                                                           { enquiriesList && enquiriesList.map((item) => { return (<>
                                                             <tr>
                                                                 <td>
                                                                     <div className="d-flex">
@@ -464,7 +451,7 @@ newSignUpsList.map((item) => {
                                                                             <img src={TabAvtar} />
                                                                         </div>
                                                                         <div className="ps-2">
-                                                                            <h6 className="fs-14 mb-0">{item.title}</h6>
+                                                                            <h6 className="fs-14 mb-0">{item.name}</h6>
                                                                             <p className="fs-12 text-gray mb-0">coby11111@cfdigital.co.uk</p>
                                                                         </div>
                                                                     </div>
@@ -488,7 +475,7 @@ newSignUpsList.map((item) => {
                                                                             <img src={TabAvtar} />
                                                                         </div>
                                                                         <div className="ps-2">
-                                                                            <h6 className="fs-14 mb-0">Lana Steiner</h6>
+                                                                            <h6 className="fs-14 mb-0">Lanasdfsdfsdfdsf Steiner</h6>
                                                                             <p className="fs-12 text-gray mb-0">testttttcoby@cfdigital.co.uk</p>
                                                                         </div>
                                                                     </div>

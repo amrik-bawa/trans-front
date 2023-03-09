@@ -1,21 +1,25 @@
 import Logo from "../../assets/images/logo.png";
 import Avtar from "../../assets/images/avtar.svg";
 import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment } from '../../features/counter/counterSlice'
+import { decrement, increment } from '../../store/counter/counterSlice'
+import { changeName,getEnquiriesList } from '../../store/enquiries/enquiriesSlice'
 const Header =()=>{
 
-    const count = useSelector((state) => state.counter.value)
+    const {value} = useSelector((state) => state.counter)
+    const {enquiriesList}=useSelector((state)=>state.enquiries)
     const dispatch = useDispatch()
-
+console.log(enquiriesList)
 // const test =()=>dispatch(increment)
 
     return <>
         <header className="nav-bar">
                     <div className="container-fluid">
                         <div className="d-md-flex justify-content-between py-3">
-                        <button aria-label="Decrement value" onClick={() => dispatch(decrement())}> - </button>
-                            <h1>Conter is {count}</h1>
-                            <button aria-label="Increment value" onClick={() => dispatch(increment())}> - </button>
+                        <button aria-label="Decrement value" onClick={() => dispatch(changeName('abc'))}> - </button>
+                            <h1>Conter is </h1>
+                            <button aria-label="Increment value" onClick={() => dispatch(changeName('sqrer'))}> - </button>
+                            <button aria-label="Increment value" onClick={() => dispatch(getEnquiriesList())}> - </button>
+
                             <div>
                                 <a href="#"><img src={Logo} /></a>
                             </div>

@@ -11,15 +11,7 @@ import Dashboard from '../page/dashboard/Index';
 const AuthRoutes = () => {
     const routes = [
         { path: '/', element: <Login /> },
-        { path: '/dashboard', element: <Dashboard /> },
-
-        // {
-        //     element: <></>,
-        //     children: [
-        //         { path: '/login', element: <Login /> },
-
-        //     ],
-        // },
+        { path: '/dashboard', element: <Dashboard />},
     ]
 
     return useRoutes(routes);
