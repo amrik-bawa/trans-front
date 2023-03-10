@@ -4,8 +4,8 @@ import { getRequest } from '../axios';
  */
 class signUpsService {
 
-    getList = async (payload) =>{
-       return await getRequest('dashboard/recent/signups?records_per_page=10');
+    getList = async (urlParam={},payload) =>{
+       return await getRequest('dashboard/recent/signups?records_per_page=10',urlParam);
         }
 
 }

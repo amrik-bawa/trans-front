@@ -23,13 +23,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { getEnquiriesList } from "../../store/enquiries/enquiriesSlice";
 const Dashboard =()=>{
 
-    const dispatch = useDispatch()
-    const { enquiriesList } = useSelector((state) => state.enquiries)
+//     const dispatch = useDispatch()
+//     const { enquiriesList } = useSelector((state) => state.enquiries)
 
-    useEffect(() => {
-        dispatch(getEnquiriesList())
-    }, [dispatch])
-
+//     useEffect(() => {
+//         dispatch(getEnquiriesList())
+//     }, [dispatch])
+// console.log(enquiriesList)
     return <>
     <div className="main-wrapper">
         <Header/>
@@ -441,7 +441,7 @@ const Dashboard =()=>{
                                                         </thead>
                                                         <tbody>
                                                            
-                                                           { enquiriesList && enquiriesList.map((item) => { return (<>
+                                                           {/* { enquiriesList.users && enquiriesList.users.map((item) => { return (<>
                                                             <tr>
                                                                 <td>
                                                                     <div className="d-flex">
@@ -465,7 +465,7 @@ const Dashboard =()=>{
                                                                     <img src={DotsVertical} />
                                                                 </td>
                                                             </tr></>)
-                                                            })}
+                                                            })} */}
                                                             <tr>
                                                                 <td>
                                                                     <div className="d-flex">

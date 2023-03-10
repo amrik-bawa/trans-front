@@ -15,8 +15,8 @@ axiosClient.defaults.timeout = 10000;
 axiosClient.defaults.withCredentials = true;
 
 
-export function getRequest(URL) {
-  return axiosClient.get(`/${URL}`)
+export function getRequest(URL,urlParam) {
+  return axiosClient.get(`/${URL}`,{params:urlParam})
 }
 
 export function postRequest(URL, payload) {

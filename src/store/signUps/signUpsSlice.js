@@ -1,20 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
 import signUpsService from '../../services/signUps';
 import { loadingStatus } from "../global/globalSlice";
-export const getSignUpsList = () => async (dispatch) => {
-	// dispatch(loadingStatus(true));
-    // console.log(signUpsService.getList())
+export const getSignUpsList = (urlParams) => async (dispatch) => {
+	dispatch(setloadingStatus(true));
 	return signUpsService
-		.getList()
+		.getList(urlParams)
 		.then( (res) => {
-            console.log('resoponse ',res)
-			dispatch(signUpsListSuccess(res?.data));
-            console.log(res?.data)
-			return dispatch(loadingStatus(false));
+            dispatch(setloadingStatus(false));
+			return dispatch(signUpsListSuccess(res?.data));
 		})
 		.catch((error) => {
             console.log(error.message)
-			dispatch(loadingStatus(false));
+			dispatch(setloadingStatus(false));
 			return dispatch(signUpsListError(error.message));
 		});
 };
@@ -23,6 +20,7 @@ export const getSignUpsList = () => async (dispatch) => {
 
 const initialState = {
     signUpsList: [],
+    loadingStatus:true
 }
 
 export const signUpsSlice = createSlice({
@@ -34,13 +32,16 @@ export const signUpsSlice = createSlice({
         state.signUpsList = action.payload;
     },
     signUpsListError: (state, action) => {
-        state.success = false;
         state.signUpsList = null;
+        state.loadingStatus = false;
     },
-    changeName: (state, action) => {
-        state.success = true;
-        state.signUpsList = action.payload;
+    setloadingStatus: (state, action) => {
+        state.loadingStatus = action.payload;
     },
+    // changeName: (state, action) => {
+    //     state.success = true;
+    //     state.signUpsList = action.payload;
+    // },
     // increment: (state) => {
     //   // Redux Toolkit allows us to write "mutating" logic in reducers. It
     //   // doesn't actually mutate the state because it uses the Immer library,
@@ -58,6 +59,6 @@ export const signUpsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { signUpsListSuccess,signUpsListError,changeName } = signUpsSlice.actions
+export const { signUpsListSuccess,signUpsListError,setloadingStatus } = signUpsSlice.actions
 
 export default signUpsSlice.reducer

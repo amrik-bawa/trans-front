@@ -7,9 +7,7 @@ export const getEnquiriesList = () => async (dispatch) => {
 	return enquiriesService
 		.getList()
 		.then( (res) => {
-            console.log('resoponse ',res)
 			dispatch(enquiriesListSuccess(res?.data));
-            console.log(res?.data)
 			return dispatch(loadingStatus(false));
 		})
 		.catch((error) => {

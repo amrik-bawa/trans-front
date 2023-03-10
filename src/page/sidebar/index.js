@@ -3,7 +3,7 @@ const Sidebar =()=>{
         <div className="sidebar">
                         <ul className="list-unstyled px-3 pt-2">
                             <li className="py-1">
-                                <a href="#" className="d-flex align-items-center">
+                                <a href="/dashboard" className="d-flex align-items-center">
                                     <span>
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M3 11C3 12.1046 3.89543 13 5 13H9C10.1046 13 11 12.1046 11 11V5C11 3.89543 10.1046 3 9 3H5C3.89543 3 3 3.89543 3 5V11ZM3 19C3 20.1046 3.89543 21 5 21H9C10.1046 21 11 20.1046 11 19V17C11 15.8954 10.1046 15 9 15H5C3.89543 15 3 15.8954 3 17V19ZM13 19C13 20.1046 13.8954 21 15 21H19C20.1046 21 21 20.1046 21 19V13C21 11.8954 20.1046 11 19 11H15C13.8954 11 13 11.8954 13 13V19ZM15 3C13.8954 3 13 3.89543 13 5V7C13 8.10457 13.8954 9 15 9H19C20.1046 9 21 8.10457 21 7V5C21 3.89543 20.1046 3 19 3H15Z" fill="#595959" />
@@ -13,7 +13,7 @@ const Sidebar =()=>{
                                 </a>
                             </li>
                             <li className="pt-2">
-                                <a href="#" className="d-flex align-items-center">
+                                <a href="/dashboard/advert-manager" className="d-flex align-items-center">
                                     <span>
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M19.0749 7.52501L12.4749 0.925012C12.1749 0.625012 11.7249 0.625012 11.4249 0.925012L9.0249 3.32501C8.6499 3.70001 8.7999 4.15001 9.0249 4.37501L9.5499 4.90001L7.2999 7.15001C6.1749 6.92501 3.0999 6.40001 1.4499 8.05001C1.1499 8.35001 1.1499 8.80001 1.4499 9.10001L5.7249 13.375L0.999902 18.1C0.699902 18.4 0.699902 18.85 0.999902 19.15C1.2999 19.45 1.8249 19.375 2.0499 19.15L6.7749 14.425L11.0499 18.7C11.4999 19.075 11.9499 18.925 12.0999 18.7C13.7499 17.05 13.2249 13.975 12.9999 12.85L15.2499 10.6L15.7749 11.125C16.0749 11.425 16.5249 11.425 16.8249 11.125L19.2249 8.72501C19.3749 8.27501 19.3749 7.82501 19.0749 7.52501Z" fill="#595959" />
@@ -36,7 +36,7 @@ const Sidebar =()=>{
                                 </a>
                             </li>
                             <li className="pt-3">
-                                <a href="#" className="d-flex align-items-center">
+                                <a href="/dashboard/advert-manager" className="d-flex align-items-center">
                                     <span>
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g clip-path="url(#clip0_1_12273)">

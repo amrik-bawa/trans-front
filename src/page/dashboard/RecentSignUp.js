@@ -2,21 +2,18 @@ import TabAvtar from "../../assets/images/tab-avtar.png";
 import DotsVertical from "../../assets/images/dots-vertical.svg";
 import Avtar2 from "../../assets/images/avatar_2.png";
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
+import { useEffect,useState } from "react"
 import { getSignUpsList } from '../../store/signUps/signUpsSlice'
+import Pagination from "react-js-pagination";
+import {DiscProgress,NoRecordsFound} from "../common/ResponseDisplay";
+
 const RecentSignUp = () => {
-
-
     const dispatch = useDispatch()
-    const { signUpsList } = useSelector((state) => state.signUps)
+    const { signUpsList,loadingStatus } = useSelector((state) => state.signUps)
 
     useEffect(() => {
         dispatch(getSignUpsList())
-        console.warn(signUpsList)
     }, [dispatch])
-
-
-
 
     return <>
         <div className="recent-signup">
@@ -36,85 +33,115 @@ const RecentSignUp = () => {
                         </svg>
                     </div>
                 </div>
-                <table className="table mb-0">
-                    <thead>
-                        <tr>
-                            <th className="text-gray fw-semibold fs-12">User</th>
-                            <th className="text-gray fw-semibold fs-12">Status</th>
-                            <th className="text-gray fw-semibold fs-12">Date</th>
-                            <th className="text-gray fw-semibold fs-12">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-
-                        {signUpsList.map((item) => {
-                            console.log(item.data.is_user_verifie)
-                            return (<>
+                {(()=>{
+                    console.log(signUpsList , signUpsList?.users , signUpsList?.users?.length)
+                    if(loadingStatus){
+                        return <DiscProgress height='500px'/>
+                    }else if(signUpsList && signUpsList.users && signUpsList.users.length>0){
+                        return <>
+                        <table className="table mb-0">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <div className="d-flex">
-                                            <div>
-                                                <img src={TabAvtar} />
-                                            </div>
-                                            <div className="ps-2">
-                                                <h6 className="fs-14 mb-0">{item.data.display_name}</h6>
-                                                <p className="fs-12 text-gray mb-0">test@test.com</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            {(item.data.is_user_verified) ?
+                                    <th className="text-gray fw-semibold fs-12">User</th>
+                                    <th className="text-gray fw-semibold fs-12">Status</th>
+                                    <th className="text-gray fw-semibold fs-12">Date</th>
+                                    <th className="text-gray fw-semibold fs-12">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+        
+                           
+        
+                                {signUpsList?.users?.map((item) => { 
+        
+                               
+                                    const user=item.data;
+                                    return (<>
+                                        <tr key={user.id}>
+                                            <td>
+                                                <div className="d-flex">
+                                                    <div>
+                                                        {(user.user_pic)?<img style={{width:'15px',height:'15px'}} src={user.user_pic} />:user.user_pic_text}
+                                                        
+                                                    </div>
+                                                    <div className="ps-2">
+                                                        <h6 className="fs-14 mb-0">{user.display_name}</h6>
+                                                        <p className="fs-12 text-gray mb-0">test@test.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    {(user.is_user_verified) ?
+        
+                                                        <a href="#" className="text-decoration-none text-success lightgreen-btn rounded-pill px-4 py-1">
+                                                            <span>
+                                                                <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <circle cx="3" cy="3" r="3" fill="#12B76A" />
+                                                                </svg>
+        
+                                                            </span>Active</a> 
+                                                            :
+                                                        <a href="#" className="text-decoration-none text-gray light-graybtn rounded-pill px-4 py-1">
+                                                            <span>
+                                                                <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <circle cx="3" cy="3" r="3" fill="#595959" />
+                                                                </svg>
+        
+                                                            </span>Offline</a>
+                                                    }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                                                </div>
+                                            </td>
+        
+                                            <td>{user.user_registered}</td>
+                                            <td>
+                                                <img src={DotsVertical} />
+                                            </td>
+                                        </tr></>
+                                )})}
+        
+        
+        
+                                
+                            </tbody>
+                        </table>
+                        </>
+                    }else{
+                        return <NoRecordsFound height='500px'/>
+                    }
 
-                                                <a href="#" className="text-decoration-none text-success lightgreen-btn rounded-pill px-4 py-1">
-                                                    <span>
-                                                        <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="3" cy="3" r="3" fill="#12B76A" />
-                                                        </svg>
-
-                                                    </span>Active</a> 
-                                                    :
-                                                <a href="#" className="text-decoration-none text-gray light-graybtn rounded-pill px-4 py-1">
-                                                    <span>
-                                                        <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="3" cy="3" r="3" fill="#595959" />
-                                                        </svg>
-
-                                                    </span>Offline</a>
-                                            }
-
-
-
-
-
-
-
-
-
-
-                                        </div>
-                                    </td>
-
-                                    <td>{item.data.user_registered}</td>
-                                    <td>
-                                        <img src={DotsVertical} />
-                                    </td>
-                                </tr></>)
-                        })}
-
-
-
-
-                        
-                    </tbody>
-                </table>
+                })()}
+                <Pagination
+          activePage={1}
+          itemsCountPerPage={5}
+          totalItemsCount={450}
+          pageRangeDisplayed={10}
+          prevPageText='Previous'
+          nextPageText='Next'
+          firstPageText=''
+          lastPageText=''
+          onChange={(pageNumber)=>{dispatch(getSignUpsList({page:pageNumber}))}}
+        />
                 <div className="d-flex justify-content-between align-items-center p-2 pb-0">
                     <a href="#" className="border-lightgray text-decoration-none d-flex py-1 px-3 justify-content-center text-dark fs-12 text-decoration-none align-items-center"><svg width="10" height="10" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.8334 7H1.16675M1.16675 7L7.00008 12.8333M1.16675 7L7.00008 1.16667" stroke="#344054" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                         <span className='ps-2'>Previous</span>
                     </a>
+
+                    
+
+
                     <div className='pagination'>
                         <ul className='list-unstyled d-flex mb-0'>
                             <li className='pe-3'>
